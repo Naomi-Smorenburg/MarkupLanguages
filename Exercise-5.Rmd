@@ -1,0 +1,104 @@
+---
+title: "Exercise 5, Markup Languages"
+subtitle: 'Replication study' 
+author: "Naomi Smorenburg"
+date: "12/1/2019"
+output: html_document
+---
+
+  ```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# 0. Start by setting a seed value
+```{r}
+set.seed(456)
+```
+
+
+# 1. Samples from a normal distribution 
+Sample 100 samples from a standard normal distribution.
+Replicate this study 100 times. 
+
+```{r}
+n <- 1000
+mean <- 0
+sd <- 1
+samples <- replicate(100, rnorm(n, mean = mean, sd = sd))
+```
+
+
+
+# 2. Statistics 
+For each of these samples, calculate the following statistics for the mean
+
+Absolute bias:
+  
+  $$|\bar{x} - \mu| $$
+  
+  
+Standard error: 
+  
+  $$\sigma_\bar{x}  = \frac{\sigma}{\sqrt{n}}$$
+  
+  
+Where $$\sigma = \sqrt{\frac{1}{n} \Sigma(x_i - \mu)^2}$$
+  
+  
+  Lower and upper bound of the 95% confidence interval: 
+  
+  $$ \bar{x} \pm 1.96 \frac{\sigma}{\sqrt{n}} $$
+  
+  ```{r}
+
+# Function to calculate these statistics
+info <- function(x){
+  m <- mean(x)
+  sem <- sd(x)/sqrt(n)
+  output <- c(
+    m,
+    abs(m - mean),
+    sem,
+    m - 1.96*sem,
+    m + 1.96*sem)
+  
+  return(output)
+}
+
+results2 <- t(apply(samples, 2, info))
+colnames(results2) <- c("Mean", "bias", "sem", "lowerbound", "upperbound")
+results2 <- data.frame(results2)
+
+# add variable on type1 errors
+library(magrittr)
+results2 <- results2 %>%
+  dplyr::mutate(typeone = mean > lowerbound & mean < upperbound)
+```
+
+# 3. Plot
+Create a plot that demonstrates the following: 
+
+A replication of the procedure that generates a 95% confidence interval that is centered around the sample mean would cover the population value at  least 95 out of 100 times" [(Neyman, 1934)](https://www.google.nl/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0ahUKEwjk4LaD6LrXAhUGC8AKHdATBhMQFggoMAA&url=http%3A%2F%2Fwww.stat.cmu.edu%2F~brian%2F905-2008%2Fpapers%2Fneyman-1934-jrss.pdf&usg=AOvVaw3KRw9DSklPihrYIM0_zRrC)
+
+```{r}
+library(ggplot2)
+ggplot(data = results2, aes(x = 1:100, y = Mean, color = typeone)) + 
+  geom_pointrange(aes(ymin = lowerbound, ymax = upperbound)) +
+  xlab("Sample mean + 95% Confidence Interval") +
+  ylab("Samples 1:100") +
+  theme_classic()
+```
+
+
+# 4. Table
+Present a table containing all simulated samples for which the resulting confidence interval does 
+not contain the population value.
+
+```{r}
+# Load the following packages 
+library(knitr)
+library(kableExtra)
+kable(results2[!results2$typeone, -6], caption = "Samples containing a Type 1 error") %>%
+  kable_styling(bootstrap_options = c("striped", "condensed"), full_width = FALSE)
+```
+
