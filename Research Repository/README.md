@@ -3,15 +3,22 @@ This research repository contains the following files, all concerning the master
 
 
 PDF Files:
-- Thesis proposal: proposal submitted to the board of studies with a brief description of the research.
-- Research Report: the first half of the thesis (introduction and methods) finished.
+- Naomi Smorenburg Thesis proposal final.pdf: 
+Thesis proposal, proposal submitted to the board of studies with a brief description of the research.
+
+- Research Report Naomi Smorenburg.pfd:
+the first half of the thesis (introduction and methods) finished.
 
 R code:
-- Utility function.R: function calculating the overall life expectancy. 
-- Expected number of events.R: code to calculate the expected number of events in survival analysis (events = deaths).
+- Utility function(life expectancy.R):
+Function calculating the overall life expectancy.
+
+- Expected_nr_events.R:
+ code to calculate the expected number of events in survival analysis (events = deaths).
 
 HTML/Rmd Files:
-- First simulations: results of the first simulations done with the 'Utility function.R'
+- First simulations.Rmd / First-Simulations.html:
+Results of the first simulations done with the 'Utility function.R'
 
 Data:
 The folder contains no data because of privacy issues. 
