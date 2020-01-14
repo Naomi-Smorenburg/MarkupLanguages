@@ -20,6 +20,9 @@ HTML/Rmd Files:
 - First simulations.Rmd / First-Simulations.html:
 Results of the first simulations done with the 'Utility function.R'
 
+- Presentation_Research_Report_Naomi.html:
+File with presentation on research report (first half thesis)
+
 Data:
 The folder contains no data because of privacy issues. 
 The data that will be used is registry data from a Dutch ALS patient registry.
