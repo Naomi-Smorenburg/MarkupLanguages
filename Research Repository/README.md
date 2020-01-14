@@ -2,12 +2,15 @@ This research repository contains the following files, all concerning the master
 'Using a Decision-Theoretic approach To Optimize Design Characteristics in Rare Disease Trials'. 
 
 
+
 PDF Files:
 - Naomi Smorenburg Thesis proposal final.pdf: 
 Thesis proposal, proposal submitted to the board of studies with a brief description of the research.
 
 - Research Report Naomi Smorenburg.pfd:
 the first half of the thesis (introduction and methods) finished.
+
+
 
 R code:
 - Utility function(life expectancy.R):
@@ -16,12 +19,16 @@ Function calculating the overall life expectancy.
 - Expected_nr_events.R:
  code to calculate the expected number of events in survival analysis (events = deaths).
 
+
+
 HTML/Rmd Files:
 - First simulations.Rmd / First-Simulations.html:
 Results of the first simulations done with the 'Utility function.R'
 
 - Presentation_Research_Report_Naomi.html:
 File with presentation on research report (first half thesis)
+
+
 
 Data:
 The folder contains no data because of privacy issues. 
